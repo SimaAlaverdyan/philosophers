@@ -12,31 +12,38 @@
 
 #include "philo.h"
 
-int var = 0;
-pthread_mutex_t mutex;
-
-void*	action()
+void	init_philos(t_utils *utils)
 {
-	pthread_mutex_lock(&mutex);
-	for (int i = 0; i < 100000; i++)
-		var++;
-	pthread_mutex_unlock(&mutex);
-	return (0);
+	int			i;
+	pthread_t	thread;
+
+	gettimeofday(&utils->create_time, NULL);
+	i = 0;
+	thread = NULL;
+	while (i < utils->number_of_philosophers)
+	{
+		utils->philos[i].last_time_to_eat = utils->create_time;
+		//pthread_create(&utils->philos[i].thread, NULL, philo, &utils->philos[i]);
+		//pthread_create(&thread, NULL, monitor, &utils->philos[i]);
+		//pthread_detach(thread);
+		i++;
+	}
+	if (utils->number_of_must_eat != 0)
+	{
+		//pthread_create(&thread, NULL, monitor_each_must_eat, utils);
+		pthread_detach(thread);
+	}	
 }
-int	main(void)
-{
-	pthread_t t1, t2;
 
-	pthread_mutex_init(&mutex, NULL);
-	if (pthread_create(&t1, NULL, &action, NULL) != 0)
+int	main(int argc, char **argv)
+{
+	t_utils util;
+
+	memset(&util, 0, sizeof(util));
+	if (argc != 5 && argc != 6)
+		return (ft_error("Wrong number of argumnet!"));
+	if (!init(&util, argc, argv))
 		return (1);
-	if (pthread_create(&t2, NULL, &action, NULL) != 0)
-		return (2);
-	if (pthread_join(t1, NULL) != 0)
-		return (3);
-	if (pthread_join(t2, NULL) != 0)
-		return (4);
-	printf("%d\n", var);
-	pthread_mutex_destroy(&mutex);
+	init_philos(&util);
 	return (0);
 }
