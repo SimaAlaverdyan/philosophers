@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/04/19 15:59:08 by salaverd          #+#    #+#             */
+/*   Updated: 2022/04/19 20:31:26 by salaverd         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "philo.h"
 
 int	ft_atoi(const char *str)
@@ -42,5 +54,14 @@ int	ft_error(char *str)
 	while (*s++)
 		i++;
 	write(2, str, i);
+	return (0);
+}
+
+int	ft_malloc(void *dst, size_t size)
+{
+	*(void **)dst = malloc(size);
+	if (*(void **)dst == NULL)
+		return (1);
+	memset(*(void **)dst, 0, size);
 	return (0);
 }

@@ -2,7 +2,8 @@ NAME			=	philo
 
 source			=	main.c \
 					utils.c \
-					init.c
+					init.c \
+					utils2.c
 
 HEAD			=	philo.h
 

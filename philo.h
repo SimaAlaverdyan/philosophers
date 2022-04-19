@@ -6,7 +6,7 @@
 /*   By: salaverd <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/12 14:26:56 by salaverd          #+#    #+#             */
-/*   Updated: 2022/04/16 20:02:10 by salaverd         ###   ########.fr       */
+/*   Updated: 2022/04/19 20:31:21 by salaverd         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include "philo.h"
 # include <unistd.h>
 # include <stdio.h>
+# include <stdlib.h>
 # include <pthread.h>
 # include <string.h>
 # include <sys/time.h>
@@ -26,7 +27,7 @@ typedef struct s_philo
 	pthread_mutex_t	*right_fork;
 	pthread_t		thread;
 	pthread_mutex_t	mutex;
-	struct s_util	*utils;
+	struct s_utils	*utils;
 	struct timeval	last_time_to_eat;
 }				t_philo;
 
@@ -44,7 +45,12 @@ typedef struct s_utils
 	struct timeval	create_time;
 }				t_utils;
 
-int	init(t_utils *util, int argc, char **argv);
-int	ft_error(char *str);
-int	ft_atoi(const char *str);
+int		init(t_utils *util, int argc, char **argv);
+int		ft_error(char *str);
+int		ft_atoi(const char *str);
+int		ft_malloc(void *dst, size_t size);
+void    *start(void *argv);
+void    *show(void *argv);
+void    *show_each_must_eat(void *argv);
+
 #endif
