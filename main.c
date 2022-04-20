@@ -16,7 +16,6 @@ void	init_philos(t_utils *utils)
 {
 	int			i;
 	pthread_t	thread;
-	printf("init1\n");
 
 	gettimeofday(&utils->create_time, NULL);
 	i = 0;
@@ -55,16 +54,12 @@ void	free_and_join(t_utils *utils)
 int	main(int argc, char **argv)
 {
 	t_utils utils;
-	printf("a\n");
 	memset(&utils, 0, sizeof(utils));
 	if (argc != 5 && argc != 6)
 		return (ft_error("Wrong number of argumnet!"));
-	printf("aa\n");
 	if (init(&utils, argc, argv))
 		return (1);
-	printf("aaa\n");
 	init_philos(&utils);
-	printf("bbb\n");
 	free_and_join(&utils);
 	return (0);
 }

@@ -29,7 +29,7 @@ int	parse_philos(t_utils *utils)
 	pthread_mutex_init(&utils->finish_mutex, NULL);
 	if (ft_malloc(&utils->philos, sizeof(t_philo) * utils->number_of_philosophers) || \
 		ft_malloc(&utils->forks, sizeof(pthread_mutex_t) * utils->number_of_philosophers))
-		return (ft_error("ERROR: malloc failed\n"));
+		return (ft_error("malloc failed\n"));
 	i = 0;
 	while (i < utils->number_of_philosophers)
 	{
@@ -47,11 +47,11 @@ int	parse_philos(t_utils *utils)
 	return (0);
 }
 
-int	check_info(t_utils *utils, int argc)
+int	check_input(t_utils *utils, int argc)
 {
 	if (argc == 6 && utils->number_of_must_eat <= 0)
 		return (ft_error("Wrong number of must eat"));
-	if (utils->number_of_philosophers) < 0
+	if (utils->number_of_philosophers < 0)
 		return (ft_error("Wrong number of philosophers"));
 	if (utils->time_to_die < 0)	
 		return (ft_error("wrong time to die"));
@@ -65,7 +65,8 @@ int	check_info(t_utils *utils, int argc)
 int	init(t_utils *utils, int argc, char **argv)
 {
 	parse_args(utils, argc, argv);
-	//check
+	if (check_input(utils, argc))
+		return (1);
 	if (parse_philos(utils))
 		return (1);
 	return (0);

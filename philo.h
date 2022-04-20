@@ -23,6 +23,7 @@
 typedef struct s_philo
 {
 	int				id;
+	int				eat_num;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*right_fork;
 	pthread_t		thread;
@@ -34,6 +35,7 @@ typedef struct s_philo
 typedef struct s_utils
 {
 	int				number_of_philosophers;
+	int				num_of_eat_finish_philo;
 	int				time_to_die;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -52,5 +54,10 @@ int		ft_malloc(void *dst, size_t size);
 void    *start(void *argv);
 void    *show(void *argv);
 void    *show_each_must_eat(void *argv);
-
+void	print_res(t_philo *philo, char *str);
+long long   convert_time(struct timeval now);
+void	pick_fork(t_philo *philo);
+void    eat(t_philo *philo);
+void	sleeping(t_philo *philo);
+void	think(t_philo *philo);
 #endif

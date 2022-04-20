@@ -3,7 +3,8 @@ NAME			=	philo
 source			=	main.c \
 					utils.c \
 					init.c \
-					utils2.c
+					utils2.c \
+					processes.c
 
 HEAD			=	philo.h
 
