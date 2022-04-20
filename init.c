@@ -47,6 +47,21 @@ int	parse_philos(t_utils *utils)
 	return (0);
 }
 
+int	check_info(t_utils *utils, int argc)
+{
+	if (argc == 6 && utils->number_of_must_eat <= 0)
+		return (ft_error("Wrong number of must eat"));
+	if (utils->number_of_philosophers) < 0
+		return (ft_error("Wrong number of philosophers"));
+	if (utils->time_to_die < 0)	
+		return (ft_error("wrong time to die"));
+	if (utils->time_to_eat < 0)
+		return (ft_error("Wrong time to eat"));
+	if (utils->time_to_sleep < 0)
+		return (ft_error("Wrong time to sleep"));
+	return (0);
+}
+
 int	init(t_utils *utils, int argc, char **argv)
 {
 	parse_args(utils, argc, argv);

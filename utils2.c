@@ -9,7 +9,6 @@ void    *start(void *argv)
         usleep(philo->utils->time_to_eat * 1000);
     while (!philo->utils->finish)
     {
-        printf("you're here\n");
         // pick_fork(philo);
         // eat(philo);
         // sleep(philo);

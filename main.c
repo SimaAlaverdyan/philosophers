@@ -60,7 +60,7 @@ int	main(int argc, char **argv)
 	if (argc != 5 && argc != 6)
 		return (ft_error("Wrong number of argumnet!"));
 	printf("aa\n");
-	if (!init(&utils, argc, argv))
+	if (init(&utils, argc, argv))
 		return (1);
 	printf("aaa\n");
 	init_philos(&utils);
