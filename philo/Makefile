@@ -1,12 +1,12 @@
 NAME			=	philo
 
 source			=	main.c \
+					philosophers.c \
+					routines.c \
 					utils.c \
-					init.c \
-					utils2.c \
-					processes.c
+					print.c
 
-HEAD			=	philo.h
+HEAD			=	philosophers.h
 
 OBJS			=	${addprefix ,${source:.c=.o}}
 
